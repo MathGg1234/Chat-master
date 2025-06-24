@@ -35,3 +35,29 @@ Une application de **chat en temps réel** construite en Java (Swing) avec un sy
 ```bash
 git clone https://github.com/MathGg1234/Chat-master.git
 cd Chat-master
+```
+
+### Lancer le client
+
+Compile et exécute ``client.New`` ou ``SwingChatClient``.
+-  Le serveur doit être lancé séparément, sur l’IP/port configuré dans le client.
+
+## Architecture
+
+```
+Chat-master/
+├── client/          # Interfaces graphiques (Swing)
+├── server/          # Serveur TCP multiclient
+├── utils/           # Outils : chiffrement, réseau, UI, commandes...
+├── resources/       # Images ou fichiers de configuration
+└── README.md
+```
+
+
+## Auteur 
+
+MathGg1234
+- https://github.com/MathGg1234
+  
+LBS88
+- https://github.com/LBS88
