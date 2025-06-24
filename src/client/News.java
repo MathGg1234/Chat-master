@@ -206,6 +206,9 @@ public class News extends JFrame {
 
 
 
+        add(featurePanel, BorderLayout.NORTH);
+
+
         setAlwaysOnTop(true);
 
         setVisible(true);

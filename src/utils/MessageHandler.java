@@ -5,10 +5,12 @@ import utils.command.*;
 import javax.crypto.SecretKey;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
+import javax.swing.JTextPane;
 import java.awt.*;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MessageHandler {
 
@@ -21,20 +23,26 @@ public class MessageHandler {
             new IpCommand(),
             new RenameCommand(),
             new RsCommand()
-
-
-
-
-            // Ajouter ici les autres commandes (RenameCommand, ByeCommand, etc.)
+            // Ajouter ici les autres commandes
     );
 
-    public static void handleSend(JTextComponent inputField, PrintWriter out, SecretKey sharedKey,
-                                  String username, Color customColor, String clientIp,
-                                  JTextPane chatArea, JFrame parentFrame) {
+    public static void handleSend(JTextComponent inputField,
+                                  PrintWriter out,
+                                  SecretKey sharedKey,
+                                  AtomicReference<String> usernameRef,
+                                  Color customColor,
+                                  String clientIp,
+                                  JTextPane chatArea,
+                                  JFrame parentFrame) {
 
         String text = inputField.getText().trim();
+
         if (!text.isEmpty() && out != null) {
-            CommandContext context = new CommandContext(inputField, chatArea, parentFrame, out, sharedKey, username, customColor, clientIp);
+            CommandContext context = new CommandContext(
+                    inputField, chatArea, parentFrame,
+                    out, sharedKey, usernameRef,
+                    customColor, clientIp
+            );
 
             for (Command command : commands) {
                 if (command.matches(text)) {
@@ -44,9 +52,12 @@ public class MessageHandler {
             }
 
             try {
+                String username = usernameRef.get();
+
                 String colorCode = (customColor != null)
                         ? "@@#" + Integer.toHexString(customColor.getRGB()).substring(2)
                         : "";
+
                 String userWithColor = username + colorCode;
 
                 String encryptedUsername = EncryptionUtils.encrypt(userWithColor, sharedKey);

@@ -14,7 +14,6 @@ public class HelpCommand implements Command {
 
     @Override
     public void execute(String input, CommandContext context) {
-        System.out.println("Hello");
 
         String[] parts = input.split("\s+", 2);
         Map<String, String> helpMap = new LinkedHashMap<>();

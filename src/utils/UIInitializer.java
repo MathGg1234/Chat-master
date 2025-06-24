@@ -7,7 +7,7 @@ public class UIInitializer {
     public static void setupFrame(JFrame frame, String username) {
         GuiUtils.setWindowIcon(frame, "resources/chat.png");
         frame.setTitle("Le Chat des PD(I) - " + username);
-        frame.setSize(350, 400);
+        frame.setSize(350, 450);
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = screenSize.width - frame.getWidth();

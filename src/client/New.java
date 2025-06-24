@@ -55,7 +55,7 @@ public class New extends JFrame {
     }
 
     private void sendMessage() {
-        MessageHandler.handleSend(inputField, out, sharedKey, String.valueOf(usernameRef), customColor, clientIp, chatArea, this);
+        MessageHandler.handleSend(inputField, out, sharedKey, usernameRef, customColor, clientIp, chatArea, this);
     }
 
     private void appendMessage(LocalDateTime timestamp, String sender, String content) {
